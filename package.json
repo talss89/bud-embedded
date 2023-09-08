@@ -1,0 +1,57 @@
+{
+  "name": "@talss89/bud-embedded",
+  "version": "0.0.0",
+  "description": "Bud for embedded systems",
+  "engines": {
+    "node": ">=16"
+  },
+  "contributors": [
+    {
+      "email": "tom.lawton@cndu.it",
+      "name": "Tom Lawton",
+      "url": "https://github.com/talss89"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/talss89/bud-embedded"
+  },
+  "bugs": "https://github.com/talss89/bud-embedded/issues",
+  "keywords": [
+    "bud",
+    "bud-preset"
+  ],
+  "files": [
+    "lib",
+    "src"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./lib/index.d.ts"
+      ]
+    }
+  },
+  "types": "./lib/index.d.ts",
+  "module": "./lib/index.js",
+  "devDependencies": {
+    "@roots/bud-esbuild": "workspace:*",
+    "@roots/bud-swc": "workspace:*",
+    "@roots/bud-typescript": "workspace:*",
+    "@skypack/package-check": "0.2.2",
+    "@types/node": "18.17.9"
+  },
+  "dependencies": {
+    "@roots/bud": "workspace:*",
+    "@roots/bud-babel": "workspace:*",
+    "@roots/bud-framework": "^6.16.1",
+    "@roots/bud-postcss": "workspace:*",
+    "tslib": "2.6.2",
+    "webpack": "5.88.2"
+  }
+}
