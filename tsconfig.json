@@ -1,5 +1,4 @@
 {
-  //"extends": "@roots/bud/config/tsconfig.json",
   "compilerOptions": {
       "allowJs": false,
       "allowUnreachableCode": false,
@@ -32,15 +31,19 @@
     "outDir": "lib",
     "types": [
       "node",
+      "webpack", 
       "@roots/bud-babel",
       "@roots/bud-framework",
+      "@roots/bud-build",
       "@roots/bud-extensions",
       "@roots/bud-esbuild",
       "@roots/bud-swc",
       "@roots/bud-postcss",
-      "@roots/bud-typescript"
+      "@roots/bud-typescript",
+      "@roots/bud-support",
+      "@roots/bud-api"
     ]
   },
-  "include": ["src"],
+  "include": ["./src"],
   "exclude": ["test", "node_modules", "dist"],
 }

@@ -6,9 +6,11 @@
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-  <!-- <%= require('!!html-loader!./app.html').default %> -->
   <% if (htmlWebpackPlugin.options.isProduction) { %>
   <% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %><style><%= compilation.assets[cssFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %></style>
-  <% }); %> <% htmlWebpackPlugin.files.js.forEach(function(jsFile) { %><script><%= compilation.assets[jsFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %></script><% }); %><% } %>  
+  <% }); %> <% htmlWebpackPlugin.files.js.forEach(function(jsFile) { %><script><%= compilation.assets[jsFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %></script><% }); %><% } %>
+  <% if (htmlWebpackPlugin.options.appHtml) { %>
+  <%= require('!!html-loader!'+htmlWebpackPlugin.options.appHtml).default %>
+  <% } %>
 </body>
 </html> 

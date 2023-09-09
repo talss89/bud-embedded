@@ -20,7 +20,7 @@
   "bugs": "https://github.com/talss89/bud-embedded/issues",
   "keywords": [
     "bud",
-    "bud-preset"
+    "extension"
   ],
   "files": [
     "lib",
@@ -28,29 +28,33 @@
   ],
   "type": "module",
   "exports": {
-    ".": "./lib/index.js"
+    ".": "./lib/index.js",
+    "./types": "./lib/types.js"
   },
   "typesVersions": {
     "*": {
       ".": [
-        "./lib/index.d.ts"
+        "./lib/index.js"
+      ],
+      "types": [
+        "./lib/types.js"
       ]
     }
   },
   "types": "./lib/index.d.ts",
   "module": "./lib/index.js",
   "devDependencies": {
-    "@roots/bud-esbuild": "workspace:*",
-    "@roots/bud-swc": "workspace:*",
-    "@roots/bud-typescript": "workspace:*",
+    "@roots/bud-esbuild": "^6.16.1",
+    "@roots/bud-swc": "^6.16.1",
+    "@roots/bud-typescript": "^6.16.1",
     "@skypack/package-check": "0.2.2",
     "@types/node": "18.17.9"
   },
   "dependencies": {
-    "@roots/bud": "workspace:*",
-    "@roots/bud-babel": "workspace:*",
+    "@roots/bud": "^6.16.1",
+    "@roots/bud-babel": "^6.16.1",
     "@roots/bud-framework": "^6.16.1",
-    "@roots/bud-postcss": "workspace:*",
+    "@roots/bud-postcss": "^6.16.1",
     "tslib": "2.6.2",
     "webpack": "5.88.2"
   }
