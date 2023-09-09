@@ -1,5 +1,5 @@
 {
-  "name": "@talss89/bud-embedded",
+  "name": "bud-embedded",
   "version": "0.0.0",
   "description": "Bud for embedded systems",
   "engines": {
