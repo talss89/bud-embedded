@@ -9,8 +9,8 @@ import {
 
 import {expose} from '@roots/bud-framework/extension/decorators/expose'
 
-import {dirname, resolve} from 'node:path'
-import {fileURLToPath} from 'node:url'
+// import {dirname, resolve} from 'node:path'
+// import {fileURLToPath} from 'node:url'
 
 interface Options {
   body: string | false
@@ -29,25 +29,23 @@ export default class BudEmbedded extends Extension<Options> {
   public override async register(bud: Bud) {
     console.error(this.options)
     // @ts-ignore
-    bud.html({
-      appHtml: this.options.body ? bud.path(this.options.body) : null,
-      template: resolve(
-        dirname(fileURLToPath(import.meta.url)),
-        `..`,
-        `vendor`,
-        `template.ejs`,
-      ),
-      minify: !bud.isProduction,
-      inject: !bud.isProduction,
-      isProduction: bud.isProduction
-    })
+    // bud.html({
+    //   appHtml: this.options.body ? bud.path(this.options.body) : null,
+    //   template: resolve(
+    //     dirname(fileURLToPath(import.meta.url)),
+    //     `..`,
+    //     `vendor`,
+    //     `template.ejs`,
+    //   ),
+    //   minify: !bud.isProduction,
+    //   inject: !bud.isProduction,
+    //   isProduction: bud.isProduction
+    // })
 
-    bud.after(async () => { 
-      await bud.when(bud.isProduction, () => bud.sh(`gzip -k -f dist/index.html`))
-    });
+    // bud.after(async () => { 
+    //   await bud.when(bud.isProduction, () => bud.sh(`gzip -k -f dist/index.html`))
+    // });
 
   }
-
-  
 
 }
