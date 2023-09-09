@@ -17,5 +17,3 @@ This extension will:
 Ideas requiring more exploration:
 
 - Generate `.S` assembly code from emitted assets directly
-- Following on from the above, generate `.S` assembly for the entire bud manifest
-- Or, perhaps: Is there a way we can efficiently embed binary data in HTML? Can we embed the entire asset manifest in HTML? Base64 and data-uri is an option, but inefficient. How big are LZMA compression implementations in Javascript? Can we use base64+LZMA?
