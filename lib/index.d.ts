@@ -1,5 +1,5 @@
 /**
- * Recommended preset configuration for Bud.
+ * Embedded web applications for bud
  *
  * @see https://bud.js.org
  * @see https://github.com/roots/bud

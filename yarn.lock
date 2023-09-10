@@ -2530,6 +2530,11 @@ browserslist@4.21.10, browserslist@^4.0.0, browserslist@^4.14.5, browserslist@^4
     node-releases "^2.0.13"
     update-browserslist-db "^1.0.11"
 
+buffer-chunks@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/buffer-chunks/-/buffer-chunks-0.1.1.tgz#a6e192009a16e3cfb3a7edd40a1bb2e83cad6710"
+  integrity sha512-VjLrzS2Hy5ZVXcQqr1PpxhZ7PRa5YNCmoVy9OfSnf2nCfZcrW2YQZwq2pnTqy37J+Lswsi37MJq/VdOThlpmSA==
+
 buffer-from@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"
@@ -2749,6 +2754,11 @@ comma-separated-tokens@^2.0.0:
   resolved "https://registry.yarnpkg.com/comma-separated-tokens/-/comma-separated-tokens-2.0.3.tgz#4e89c9458acb61bc8fef19f4529973b2392839ee"
   integrity sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==
 
+commander@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-11.0.0.tgz#43e19c25dbedc8256203538e8d7e9346877a6f67"
+  integrity sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==
+
 commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
@@ -2858,6 +2868,13 @@ create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
+
+cross-def@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/cross-def/-/cross-def-1.1.9.tgz#f868f53f5be9e0bfa3a82c9601c897dbe32c8d03"
+  integrity sha512-ssTOQReIn0iDuZtz/gHsDz4eK+222af3gTnoyL6f2R3Ggc28cmah7VAn+z7fLMJv320tkQ2eldxXoCI0H3k0qQ==
+  dependencies:
+    commander "^11.0.0"
 
 cross-spawn@^7.0.3:
   version "7.0.3"

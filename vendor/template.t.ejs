@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="<%= htmlWebpackPlugin.options.meta.viewport %>">
-  <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta charset="utf-8" />
+  <meta name=viewport content="width=device-width, initial-scale=1" />
+  <title>%APP_TITLE%</title>
 </head>
+
 <body>
-  <% if (htmlWebpackPlugin.options.isProduction) { %>
-  <% htmlWebpackPlugin.files.css.forEach(function(cssFile) { %><style><%= compilation.assets[cssFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %></style>
-  <% }); %> <% htmlWebpackPlugin.files.js.forEach(function(jsFile) { %><script><%= compilation.assets[jsFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %></script><% }); %><% } %>
-  <%= require(`!!html-loader!/%%%APPENTRY%%%`).default %>
-</body> 
-</html> 
+  %%%DEPENDENCY_REQUIRES%%%
+  <%= require(`/%%%APPENTRY%%%`).default %>
+  <noscript>%NO_SCRIPT%</noscript>
+  <% if (htmlWebpackPlugin.options.isEmbeddedBuild) { %>
+    <% htmlWebpackPlugin.files.css.forEach(function(cssFile) { 
+      %>
+      <style>
+        <%=compilation.assets[cssFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %>
+      </style>
+      <% }); %>
+        <% htmlWebpackPlugin.files.js.forEach(function(jsFile) { %>
+          <script><%= compilation.assets[jsFile.substr(htmlWebpackPlugin.files.publicPath.length)].source() %></script>
+          <% }); %>
+            <% } %>
+</body>
+</html>

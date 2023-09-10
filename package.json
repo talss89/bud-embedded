@@ -29,7 +29,8 @@
   "type": "module",
   "exports": {
     ".": "./lib/index.js",
-    "./types": "./lib/types.js"
+    "./types": "./lib/types.js",
+    "./cross-def-loader": "./lib/loaders/cross-def-loader.js"
   },
   "typesVersions": {
     "*": {
@@ -55,6 +56,8 @@
     "@roots/bud-babel": "^6.16.1",
     "@roots/bud-framework": "^6.16.1",
     "@roots/bud-postcss": "^6.16.1",
+    "buffer-chunks": "^0.1.1",
+    "cross-def": "^1.1.9",
     "tslib": "2.6.2",
     "webpack": "5.88.2"
   }
