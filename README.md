@@ -37,6 +37,46 @@ Start a new Bud app with `npx create-bud-app`, or use an existing Bud project.
 
 `npm run dev` or `yarn bud dev`. You'll see your application at `dist-embedded/index.html`, with assembler code at `dist-embedded/external/build/index.html.s`. Or, fire up your web browser and visit the dev server URL.
 
+```
+@talss89 ➜ /workspaces/sandbox $ yarn bud dev
+yarn run v1.22.19
+$ /workspaces/sandbox/node_modules/.bin/bud dev
+
+╭ bud-sandbox [1/2] [a553285186ba10c9]                                                  ./dist
+│
+│ app
+│  ◯ js/runtime.js                                                                    43.83 kB
+│  ◯ js/app.js                                                                        83.25 kB
+│
+│ assets
+│  ◯ logo.svg                                                                          1.21 kB
+│  ◯ index.html                                                                      383 bytes
+│  ◯ external/src/simple.h                                                           339 bytes
+│  … 4 additional assets not shown
+│
+╰ 248ms 27 modules [27/27 modules cached]
+
+╭ ☰ bud-sandbox (embedded) [2/2] [c129908b55232ae8a331]                        ./dist-embedded
+│
+│ app
+│  ◉ css/app.css                                                                   ✔ 645 bytes
+│  ◉ app.js                                                                          ✔ 1.89 kB
+│
+│ assets
+│  ◉ external/build/index.html.gz.s                                                   10.18 kB
+│  ◉ index.html                                                                        2.85 kB
+│  ◉ external/build/index.html.gz                                                      1.57 kB
+│  ◉ external/src/simple.h                                                           339 bytes
+│  … 4 additional assets not shown
+│
+╰ 400ms 3 modules [3/3 modules cached]
+
+Network
+
+ › Dev    ┄ http://0.0.0.0:3000/
+          ┄ http://172.16.5.4:3000/
+```
+
 ## What, why and how
 
 When writing code for embedded systems, we're often constrained by resources. Whether that be RAM, ROM, flash space or CPU cycles, we have a lot to think about that higher-level programmers don't need to bother with. If we want to build in a web app and server to our device, to implement a control panel for example, a seemingly simple requirement can quickly become fraught with gotchas and complexity.
