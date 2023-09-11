@@ -227,3 +227,7 @@ If you look at the source for this extension, you'll see a lodash template is be
 Essentially, `html-webpack-plugin` doesn't give us enough flexibility in terms of a hook API to set up module and asset dependencies for inlining emitted assets in the HTML template. `require()` inside the template will set up dependencies perfectly, but it can only accept string literals, not variables, so I've taken the approach of writing a template to `@os-cache` which references each emitted JS and CSS asset with `require()`, as a literal.
 
 If anyone has a better solution, I'm all ears.
+
+---
+
+*Thank you to my amazing partner Rachel, who fed and watered me, and walked my dog Rosie whilst I sessioned this over the hottest day of the year, and last weekend of summer. I'm sorry :heart:.*
