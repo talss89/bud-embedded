@@ -35,7 +35,7 @@ Start a new Bud app with `npx create-bud-app`, or use an existing Bud project.
 
 ### Build your project
 
-`npm run dev` or `yarn bud dev`. You'll see your application at `dist-embedded/index.html`, with assembler code at `dist-embedded/external/build/index.html.s`. Or, fire up your web browser and visit the dev server URL.
+`npm run dev` or `yarn bud dev`. You'll see your application at `dist-embedded/index.html`, with assembler code at `dist-embedded/external/build/index.html.S`. Or, fire up your web browser and visit the dev server URL.
 
 ```
 @talss89 ➜ /workspaces/sandbox $ yarn bud dev
@@ -63,7 +63,7 @@ $ /workspaces/sandbox/node_modules/.bin/bud dev
 │  ◉ app.js                                                                          ✔ 1.89 kB
 │
 │ assets
-│  ◉ external/build/index.html.gz.s                                                   10.18 kB
+│  ◉ external/build/index.html.gz.S                                                   10.18 kB
 │  ◉ index.html                                                                        2.85 kB
 │  ◉ external/build/index.html.gz                                                      1.57 kB
 │  ◉ external/src/simple.h                                                           339 bytes
@@ -89,7 +89,9 @@ This is where this extension comes in - `bud-embedded` will compress and concate
 
 Your embedded-ready app lives at `dist-embedded/index.html`. You can include this in your firmware via a method of your choice ([In ESP-IDF, we use EMBED_FILES](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html#embedding-binary-data)).
 
-The extension also supports compressing and generating an assembler code version of your app. You can pass this ASM that's been generated at `dist-embedded/external/build/index.html.s` to your toolchain. [You can even drop assembler into an Arduino sketch](https://forum.arduino.cc/t/how-to-use-assembler-together-with-arduino-libraries/470783).
+The extension also supports compressing and generating an assembler code version of your app. You can pass this ASM that's been generated at `dist-embedded/external/build/index.html.S` to your toolchain. [You can even drop assembler into an Arduino sketch](https://forum.arduino.cc/t/how-to-use-assembler-together-with-arduino-libraries/470783).
+
+**There is a now a basic Arduino / ESP32 example in [`bud-embedded-examples`](https://github.com/talss89/bud-embedded-examples). I will be adding other examples in time.**
 
 That's the general gist of `bud-embedded`, but there are a number of other useful features, so be sure to read on.
 
