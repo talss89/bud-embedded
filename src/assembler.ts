@@ -16,7 +16,7 @@ export default class Assembler {
 
     compile(fn, options: AssemblerOptions = {}) {
         let output = ""
-        const symbol = options.symbol ?? basename(fn).toLowerCase().replace(/\W/, '_')
+        const symbol = options.symbol ?? basename(fn).toLowerCase().replace(/\W/g, '_')
         const start_symbol = "_binary_" + symbol + "_start"
         const end_symbol = "_binary_" + symbol + "_end"
         const length_symbol = symbol + "_length"
