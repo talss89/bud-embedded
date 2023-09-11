@@ -92,7 +92,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
 
       if (this.options.emitAssembler) {
         const asm = new Assembler(content);
-        compilation.emitAsset(`external/build/${basename(compressedMainAsset ?? mainAsset)}.s`, new webpack.sources.RawSource(asm.compile(mainAsset)));
+        compilation.emitAsset(`external/build/${basename(compressedMainAsset ?? mainAsset)}.s`, new webpack.sources.RawSource(asm.compile(compressedMainAsset ?? mainAsset)));
       }
   }
 
