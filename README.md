@@ -53,7 +53,47 @@ The extension also supports compressing and generating an assembler code version
 
 That's the general gist of `bud-embedded`, but there are a number of other useful features, so be sure to read on.
 
-## Cross-define symbols
+## `bud.config.js` examples
+
+### Add HTML to `<body>`
+
+The extension needs to build your HTML for you, but you can add HTML to the final file by specifying a file to include in the `<body>` tag.
+
+You can set header tag values via `bud.html()` as normal, but do not override the template.
+
+```js
+export default async (bud: Bud) => {
+
+    bud.embedded.set('body', bud.path('@src/app.html'))
+
+}
+```
+
+### Compress with gzip
+
+Compress your embedded app at build-time using `gzip` (or `deflate`, or `brotli`). This can significantly reduce file size (plus, we don't need to use the device CPU to compress on the fly), and most browsers can decode compressed formats. Just make sure you send a `Content-Encoding: <type>` header in response!
+
+```js
+export default async (bud: Bud) => {
+
+    bud.embedded.set('compress', 'gzip')
+
+}
+```
+
+### Don't generate assembler
+
+By default `bud-embedded` generates an assembler (ASM) version of your asset at `/dist-embedded/external/build/index.html.s`. Disable this as follows:
+
+```js
+export default async (bud: Bud) => {
+
+    bud.embedded.set('emitAssembler', false)
+
+}
+```
+
+## Bridge JS and C - Cross-define symbols
 
 Cross definitons are symbols which are defined in a JSON manifest, but are then available both in the web application via `import` or `require()` and the embedded firmware binary via C header / `typedef enum`. They are really powerful, and can save a huge amount of manual work.
 
@@ -166,47 +206,7 @@ typedef enum {
 #endif
 ```
 
-## `bud.config.js` examples
-
-### Add HTML to `<body>`
-
-The extension needs to build your HTML for you, but you can add HTML to the final file by specifying a file to include in the `<body>` tag.
-
-You can set header tag values via `bud.html()` as normal, but do not override the template.
-
-```js
-export default async (bud: Bud) => {
-
-    bud.embedded.set('body', bud.path('@src/app.html'))
-
-}
-```
-
 Now your fruit and veg IDs are consistent across C and Javascript. Cross defs also support string labels, and will produce a corresponding `const char*` array in C for easy use within firmware.
-
-### Compress with gzip
-
-Compress your embedded app at build-time using `gzip` (or `deflate`, or `brotli`). This can significantly reduce file size (plus, we don't need to use the device CPU to compress on the fly), and most browsers can decode compressed formats. Just make sure you send a `Content-Encoding: <type>` header in response!
-
-```js
-export default async (bud: Bud) => {
-
-    bud.embedded.set('compress', 'gzip')
-
-}
-```
-
-### Don't generate assembler
-
-By default `bud-embedded` generates an assembler (ASM) version of your asset at `/dist-embedded/external/build/index.html.s`. Disable this as follows:
-
-```js
-export default async (bud: Bud) => {
-
-    bud.embedded.set('emitAssembler', false)
-
-}
-```
 
 ## FAQ
 
