@@ -1,6 +1,6 @@
 {
   "name": "bud-embedded",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Bud for embedded systems",
   "engines": {
     "node": ">=16"
