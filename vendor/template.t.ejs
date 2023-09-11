@@ -8,9 +8,9 @@
 </head>
 
 <body>
-  %%%DEPENDENCY_REQUIRES%%%
-  <%= require(`/%%%APPENTRY%%%`).default %>
   <noscript>%NO_SCRIPT%</noscript>
+  %%%DEPENDENCY_REQUIRES%%%
+  %%%HTML_APP_BODY%%%
   <% if (htmlWebpackPlugin.options.isEmbeddedBuild) { %>
     <% htmlWebpackPlugin.files.css.forEach(function(cssFile) { 
       %>

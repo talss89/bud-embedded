@@ -17,7 +17,7 @@ export default function(this: LoaderContext<Options>, source) {
 
     if(options.manifests.length > 0) {
         for(const crossDefineManifest of options.manifests) {
-        
+
             if(crossDefineManifest.manifest !== this.resourcePath) continue;
 
             for(const lang of crossDefineManifest.langs) {

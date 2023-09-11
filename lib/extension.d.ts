@@ -8,7 +8,7 @@ interface Options {
     crossDefs: [CrossDefineManifest] | [];
     compress: string | false;
     isEmbeddedBuild: boolean;
-    emitAssembly: boolean;
+    emitAssembler: boolean;
 }
 export default class BudEmbedded extends Extension<Options, WebpackPluginInstance> {
     register(bud: Bud): Promise<void>;

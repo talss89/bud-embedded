@@ -1,6 +1,6 @@
 {
   "name": "bud-embedded",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "Bud for embedded systems",
   "engines": {
     "node": ">=16"
@@ -24,13 +24,15 @@
   ],
   "files": [
     "lib",
-    "src"
+    "src",
+    "vendor"
   ],
   "type": "module",
   "exports": {
     ".": "./lib/index.js",
     "./types": "./lib/types.js",
-    "./cross-def-loader": "./lib/loaders/cross-def-loader.js"
+    "./cross-def-loader": "./lib/loaders/cross-def-loader.js",
+    "./dotenv-loader": "./lib/loaders/dotenv-loader.js"
   },
   "typesVersions": {
     "*": {
@@ -45,20 +47,16 @@
   "types": "./lib/index.d.ts",
   "module": "./lib/index.js",
   "devDependencies": {
-    "@roots/bud-esbuild": "^6.16.1",
-    "@roots/bud-swc": "^6.16.1",
-    "@roots/bud-typescript": "^6.16.1",
-    "@skypack/package-check": "0.2.2",
-    "@types/node": "18.17.9"
-  },
-  "dependencies": {
     "@roots/bud": "^6.16.1",
-    "@roots/bud-babel": "^6.16.1",
     "@roots/bud-framework": "^6.16.1",
-    "@roots/bud-postcss": "^6.16.1",
-    "buffer-chunks": "^0.1.1",
-    "cross-def": "^1.1.9",
+    "@skypack/package-check": "0.2.2",
+    "@types/node": "18.17.9",
     "tslib": "2.6.2",
     "webpack": "5.88.2"
+  },
+  "dependencies": {
+    "buffer-chunks": "^0.1.1",
+    "cross-def": "^1.1.9",
+    "dotenv": "^16.3.1"
   }
 }

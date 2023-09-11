@@ -30,11 +30,11 @@ interface Options {
   crossDefs: [CrossDefineManifest] | [],
   compress: string | false,
   isEmbeddedBuild: boolean,
-  emitAssembly: boolean
+  emitAssembler: boolean
 }
 
 @label(`bud-embedded`)
-@options<Options>({ isEmbeddedBuild: false, body: '', crossDefs: [], compress: false, emitAssembly: true })
+@options<Options>({ isEmbeddedBuild: false, body: '', crossDefs: [], compress: false, emitAssembler: true })
 @expose(`embedded`)
 export default class BudEmbedded extends Extension<Options, WebpackPluginInstance> {
 
@@ -60,7 +60,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
                 const Deflate = promisify(zlib.deflate);
 
                 if(!compressedMainAsset) {
-                  compressedMainAsset = mainAsset.replace(/\.html$/, '.d.html')
+                  compressedMainAsset = mainAsset.replace(/\.html$/, '.html.d')
                 }
                 content = await Deflate(content);
                 break;
@@ -70,7 +70,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
                 const Brotli = promisify(zlib.brotliCompress);
 
                 if(!compressedMainAsset) {
-                  compressedMainAsset = mainAsset.replace(/\.html$/, '.br.html')
+                  compressedMainAsset = mainAsset.replace(/\.html$/, '.html.br')
                 }
                 content = await Brotli(content);
                 break;
@@ -81,7 +81,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
                 const GZip = promisify(zlib.gzip);
 
                 if(!compressedMainAsset) {
-                  compressedMainAsset = mainAsset.replace(/\.html$/, '.gz.html')
+                  compressedMainAsset = mainAsset.replace(/\.html$/, '.html.gz')
                 }
                 content = await GZip(content);
                 break;
@@ -90,9 +90,9 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
             compilation.emitAsset(`external/build/${compressedMainAsset}`, new webpack.sources.RawSource(content));
       }
 
-      if (this.options.emitAssembly) {
+      if (this.options.emitAssembler) {
         const asm = new Assembler(content);
-        compilation.emitAsset(`external/build/${basename(compressedMainAsset ?? mainAsset)}.S`, new webpack.sources.RawSource(asm.compile(mainAsset)));
+        compilation.emitAsset(`external/build/${basename(compressedMainAsset ?? mainAsset)}.s`, new webpack.sources.RawSource(asm.compile(mainAsset)));
       }
   }
 
@@ -126,7 +126,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
 
     bud.setPublicPath('/')
 
-    const appHtml = (this.options.body ? (relative(bud.path('@src'), this.options.body).replace('./', '')) : 'app.html');
+    const appHtml = (this.options.body ? `<%= require('/${(relative(bud.path('@src'), this.options.body).replace('./', ''))}').default %>` : '<div id="root"></div>');
     const template_compiled_fn = bud.path(`@os-cache/bud-embedded-template-${(this.options.isEmbeddedBuild ? 'fw' : 'dev')}.ejs`);
     
     var template_t = fs.readFileSync(resolve(
@@ -146,7 +146,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
       } 
     }
     
-    template_t = template_t.replace('%%%APPENTRY%%%', appHtml);
+    template_t = template_t.replace('%%%HTML_APP_BODY%%%', appHtml);
     template_t = template_t.replace('%%%DEPENDENCY_REQUIRES%%%', dependencyRequires)
 
     fs.writeFileSync(template_compiled_fn, template_t);
@@ -159,15 +159,25 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
     })
 
     bud.build.setLoader(`xd-loader`, await bud.module.resolve(`bud-embedded/cross-def-loader`))
+    .setLoader(`dotenv-loader`, await bud.module.resolve(`bud-embedded/dotenv-loader`))
     .setItem(`xd`, {
       loader: 'xd-loader',
       options: {
         manifests: this.options.crossDefs
       }
     })
+    .setItem(`dotenv`, {
+      loader: 'dotenv-loader',
+      options: {}
+    })
     .setRule(`xd`, {
       test: /\.xd\.json$/,
       use: [`xd`],
+    })
+    .setRule(`dotenv`, {
+      test: /kconfig$/,
+      use: [`dotenv`],
+      type: 'json'
     })
 
     bud.build.rules.json.setExclude((items) => [/\.xd\.json$/, ...(items ? items : [])]);
@@ -180,7 +190,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
         hot: false
       },
       output: {
-        path: bud.path('./embedded-dist'),
+        path: bud.path('./dist-embedded'),
       }
     })
         
@@ -230,6 +240,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
       firmware.minimize()
 
       firmware.embedded.setOptions(this.options)
+
       firmware.embedded.isFirmware()
   
       const entrypoints = await this.app.hooks.filter(`build.entry`, {});

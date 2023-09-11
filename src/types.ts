@@ -8,16 +8,17 @@ declare module '@roots/bud-framework' {
 
   interface Loaders {
     'xd-loader': Loader,
-    'html-binary-loader': Loader
+    'dotenv-loader': Loader
   }
 
   interface Items {
     xd: Item,
-    'html-binary-loader': Item
+    dotenv: Item
   }
 
   interface Rules {
-    xd: Rule
+    xd: Rule,
+    dotenv: Rule
   }
 
   interface Bud {
