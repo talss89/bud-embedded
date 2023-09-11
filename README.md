@@ -121,6 +121,22 @@ export default async (bud: Bud) => {
 }
 ```
 
+### Proxy to a real device under test
+
+I imagine your app uses AJAX or Websockets. Using the Bud HMR is great, until you need to access an API endpoint hosted on the embedded device itself.
+
+If you configure your device to join your network, and assign itself an IP, you can use `bud.setProxyUrl()` to pass requests upstream to the device. You then have the best of both worlds: hot-reloading and real hardware to interact with.
+
+```js
+
+export default async (bud: Bud) => {
+
+    bud.setProxyUrl(`http://your-device-ip-or-hostname`)
+
+}
+
+```
+
 ### Don't generate assembler
 
 By default `bud-embedded` generates an assembler (ASM) version of your asset at `/dist-embedded/external/build/index.html.s`. Disable this as follows:
