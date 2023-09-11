@@ -217,3 +217,13 @@ Believe me, I didn't want to do this. But there is a method to this madness.
 We often want to flash code to devices, even in development, but we don't want to bloat our binary size with HMR code, and we also want everything minimized. That sounds a lot like production mode, doesn't it? ...but we **do** actually want file watching and hot-reloading. Just hosted on our local machine. Splitting the compiler into non-embedded (`dist`) and embedded (`dist-embedded`) instances allows us to watch, and hot-reload our web app as normal, but also produce compressed firmware-ready assets ready to be flashed to our development device as and when we need.
 
 For actual production builds (like flashing for mass manufacture), we use `bud build production`.
+
+### What is with the templating a template for a template deal with `html-webpack-plugin`?
+
+Ugh. This took me ages.
+
+If you look at the source for this extension, you'll see a lodash template is being constructed from an interpolated lodash template to be used as a template for the main app HTML.
+
+Essentially, `html-webpack-plugin` doesn't give us enough flexibility in terms of a hook API to set up module and asset dependencies for inlining emitted assets in the HTML template. `require()` inside the template will set up dependencies perfectly, but it can only accept string literals, not variables, so I've taken the approach of writing a template to `@os-cache` which references each emitted JS and CSS asset with `require()`, as a literal.
+
+If anyone has a better solution, I'm all ears.
