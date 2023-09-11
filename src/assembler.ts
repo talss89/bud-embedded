@@ -23,7 +23,7 @@ export default class Assembler {
         const length = this.source.byteLength
         const section = options.section ?? ".rodata.embedded"
 
-        output += `.data\n.section ${section}\n\n.global ${symbol}\n${symbol}:\n\nglobal ${start_symbol}\n${start_symbol}:\n`
+        output += `.data\n.section ${section}\n\n.global ${symbol}\n${symbol}\n\n.global ${start_symbol}\n${start_symbol}:\n`
         let words = chunks(this.source, 16);
 
         for(const word of words) {
@@ -36,7 +36,7 @@ export default class Assembler {
 
         output += `.global ${end_symbol}\n${end_symbol}:\n\n`
 
-        output += `.global ${length_symbol}\n${length_symbol}:\n.word: ${length}\n`
+        output += `.global ${length_symbol}\n${length_symbol}:\n.word ${length}\n`
         
         return output
     }
