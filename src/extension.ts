@@ -129,7 +129,7 @@ export default class BudEmbedded extends Extension<Options, WebpackPluginInstanc
 
     const appHtml = this.options.body ? (`<%= require('/${(relative(bud.path('@src'), this.options.body).replace('./', ''))}').default %>`) : '<div id="root"></div>';
     const template_compiled_fn = bud.path(`@os-cache/bud-embedded-template-${(this.options.isEmbeddedBuild ? 'fw' : 'dev')}.ejs`);
-    console.log(template_compiled_fn)
+
     var template_t = fs.readFileSync(resolve(
       dirname(fileURLToPath(import.meta.url)),
       `..`,
