@@ -151,6 +151,21 @@ export default async (bud: Bud) => {
 }
 ```
 
+## How to reference the `index.html` asset from C / C++
+
+> **:warning: The app bundle 'string' is not null-terminated. Always use use the `index_html_length` symbol, or calculate the length using the `_binary_index_html_start` and `_binary_index_html_end` symbols.**
+
+To get a reference to your application bundle (which can be sent to the browser as HTML), compile your firmware, and include the `./dist-embedded/external/build/index.html.S` file. This is an Assembler (ASM) file containing your app.
+
+In C, or C++, you can get a pointer to this string in RAM, and its length using the following syntax:
+
+```c
+extern const char index_html_start[] asm("_binary_index_html_start"); // A pointer to our web app index.html
+extern const uint32_t index_html_len asm("index_html_length"); // The length of the index.html page
+```
+
+> :interrobang: If using compression (`bud.embedded.set('compress', 'gzip')`), the filename of your assembler source will change, as well as the symbol definitions. `gzip` will add a `.gz` suffix, and the symbols will need to be referenced like so: `_binary_index_html_gz_start`
+
 ## Bridge JS and C - Cross-define symbols
 
 Cross definitons are symbols which are defined in a JSON manifest, but are then available both in the web application via `import` or `require()` and the embedded firmware binary via C header / `typedef enum`. They are really powerful, and can save a huge amount of manual work.
