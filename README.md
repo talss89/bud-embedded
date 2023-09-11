@@ -128,22 +128,6 @@ But if we configure Bud via `bud.config.js` to export these symbols to C:
 ```js
 export default async (bud: Bud) => {
 
-    bud.embedded.set('body', bud.path('@src/app.html'))
-
-}
-```
-
-## `bud.config.js` examples
-
-### Add HTML to `<body>`
-
-The extension needs to build your HTML for you, but you can add HTML to the final file by specifying a file to include in the `<body>` tag.
-
-You can set header tag values via `bud.html()` as normal, but do not override the template.
-
-```js
-export default async (bud: Bud) => {
-
     bud.embedded.crossDefine({
         manifest: bud.path('@src/fruit_veg.xd.json'),
         langs: ['c']
@@ -180,6 +164,22 @@ typedef enum {
 #ifdef __cplusplus
 }
 #endif
+```
+
+## `bud.config.js` examples
+
+### Add HTML to `<body>`
+
+The extension needs to build your HTML for you, but you can add HTML to the final file by specifying a file to include in the `<body>` tag.
+
+You can set header tag values via `bud.html()` as normal, but do not override the template.
+
+```js
+export default async (bud: Bud) => {
+
+    bud.embedded.set('body', bud.path('@src/app.html'))
+
+}
 ```
 
 Now your fruit and veg IDs are consistent across C and Javascript. Cross defs also support string labels, and will produce a corresponding `const char*` array in C for easy use within firmware.
