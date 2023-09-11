@@ -37,6 +37,9 @@ Start a new Bud app with `npx create-bud-app`, or use an existing Bud project.
 
 `npm run dev` or `yarn bud dev`. You'll see your application at `dist-embedded/index.html`, with assembler code at `dist-embedded/external/build/index.html.S`. Or, fire up your web browser and visit the dev server URL.
 
+<details>
+<summary>View output...</summary>
+
 ```
 @talss89 ➜ /workspaces/sandbox $ yarn bud dev
 yarn run v1.22.19
@@ -76,6 +79,8 @@ Network
  › Dev    ┄ http://0.0.0.0:3000/
           ┄ http://172.16.5.4:3000/
 ```
+
+</details>
 
 ## What, why and how
 
