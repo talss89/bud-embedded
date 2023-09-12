@@ -162,7 +162,7 @@ export default async (bud: Bud) => {
 
 To get a reference to your application bundle (which can be sent to the browser as HTML), compile your firmware, and include the `./dist-embedded/external/build/index.html.S` file. This is an Assembler (ASM) file containing your app.
 
-In C, or C++, you can get a pointer to this string in RAM, and its length using the following syntax:
+In C, or C++, you can get a pointer to this string in memory, and its length using the following syntax:
 
 ```c
 extern const char index_html_start[] asm("_binary_index_html_start"); // A pointer to our web app index.html
